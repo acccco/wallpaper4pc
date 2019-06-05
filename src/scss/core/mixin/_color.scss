@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+/* 用于遍历颜色生成一系列可用的class，
+ * 背景色（bc-xxx），字的颜色（fc-xxx），按钮的颜色（btnc-xxx）
+ */
+
+@mixin make-background-color($color-list) {
+  @each $name, $color in $color-list {
+    .bc-#{"" + $name} {
+      background-color: $color;
+    }
+  }
+}
+
+@mixin make-font-color($color-list) {
+  @each $name, $color in $color-list {
+    .fc-#{"" + $name} {
+      color: $color;
+    }
+  }
+}
+
+@mixin make-botton-color($color-list) {
+  @each $name, $background-color, $border-color in $color-list {
+    .btnc-#{"" + $name} {
+      @include button-variant($background-color, $border-color);
+    }
+  }
+}
