@@ -1,11 +1,13 @@
 <template>
-  <div class="matrix-container">
 
-  </div>
 </template>
 
 <script>
   export default {
-    name: 'matrix'
+    name: 'List'
   };
 </script>
+
+<style scoped>
+
+</style>
