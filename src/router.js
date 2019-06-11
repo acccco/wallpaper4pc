@@ -16,7 +16,7 @@ export default new Router({
       component: OnePicture
     },
     {
-      path: '/today',
+      path: '/onePicture',
       redirect: '/'
     },
     {

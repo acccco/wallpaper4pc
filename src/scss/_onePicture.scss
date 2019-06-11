@@ -1,8 +1,5 @@
 .one-picture {
   height: 100%;
-  background: url("http://wallpapercdn.acohome.cn/AKFox_ZH-CN8586782340_1920x1080.jpg");
-  background-size: cover;
-
 
   .prev,
   .next {
@@ -15,6 +12,7 @@
     color: #fff;
     @include button-variant(#211717, darken(#211717, 10));
     transition: 0.4s;
+    z-index: 10;
 
     &.disabled {
       pointer-events: none;
