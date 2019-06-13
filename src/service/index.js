@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const baseURL = 'http://localhost:3000';
+
 let httpClient = axios.create({
-  baseURL: 'http://localhost:3000/'
+  baseURL
 });
 
 /* 过滤响应 */
@@ -15,6 +17,14 @@ httpClient.interceptors.response.use((result) => {
   return Promise.reject(result);
 });
 
-export function getWallByPass(pass) {
-  return httpClient.get(`http://localhost:3000/api/wallpaper/sort/${pass}`);
+export {
+  baseURL
+};
+
+export function getWallByBefore(day) {
+  return httpClient.get(`/api/wallpaper/before/${day}`);
+}
+
+export function getWallByPage(pageNum, pageSize) {
+  return httpClient.get(`/api/wallpaper?pageNum=${pageNum}&pageSize=${pageSize}`);
 }

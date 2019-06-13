@@ -1,5 +1,5 @@
-.one-picture {
-  height: 100%;
+.matrix-wrap {
+  @include size(100%);
 
   .prev,
   .next {
@@ -34,7 +34,7 @@
   }
 
   .prev {
-    @include posi(50%, 20px);
+    @include posi(50%, 50px);
 
     &::before,
     &::after {
@@ -71,7 +71,7 @@
   }
 
   .next {
-    @include posi(50%, null, null, 20px);
+    @include posi(50%, null, null, 50px);
 
     &::before,
     &::after {

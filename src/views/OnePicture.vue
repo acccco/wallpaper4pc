@@ -1,14 +1,14 @@
 <template>
-  <div class="one-picture">
-    <div class="prev btn" :class="{disabled:pass===0}" @click="prev"></div>
+  <div class="matrix-wrap">
+    <div class="prev btn" :class="{disabled:dayBefore===0}" @click="prev"></div>
     <div class="next btn" @click="next"></div>
-    <Matrix ref="matrix" :image="imageInfo.uri" @changeEnd="changeEnd"></Matrix>
+    <Matrix ref="matrix" @changeEnd="changeEnd"></Matrix>
   </div>
 </template>
 
 <script>
-  import Matrix from '@/components/Matrix';
-  import {getWallByPass} from '../service/';
+  import Matrix from '@/components/OnePicMatrix';
+  import {getWallByBefore} from '../service/';
 
   export default {
     name: 'onePicture',
@@ -17,7 +17,7 @@
     },
     data() {
       return {
-        pass: 0,
+        dayBefore: 0,
         imageInfo: {
           date: '',
           describe: '',
@@ -27,13 +27,17 @@
       };
     },
     created() {
-      let pass = parseInt(this.$route.query.pass);
-      this.pass = Number.isNaN(pass) ? 0 : pass;
-      getWallByPass(this.pass).then(imageInfo => {
-        this.imageInfo = imageInfo;
-      });
+      let before = parseInt(this.$route.query.before);
+      this.dayBefore = Number.isNaN(before) ? 0 : before;
+      this.getImage();
     },
     methods: {
+      getImage() {
+        return getWallByBefore(this.dayBefore).then(imageInfo => {
+          this.imageInfo = imageInfo;
+          this.$refs.matrix.showImage(imageInfo.uri);
+        });
+      },
       changeEnd() {
         setTimeout(() => {
           this.lock = false;
@@ -42,19 +46,17 @@
       prev() {
         if (this.lock) return;
         this.lock = true;
-        getWallByPass(this.pass - 1).then(imageInfo => {
-          this.imageInfo = imageInfo;
-          this.pass--;
-          this.$router.replace({query: {pass: this.pass}});
+        this.dayBefore--;
+        this.getImage().then(() => {
+          this.$router.replace({query: {before: this.dayBefore}});
         });
       },
       next() {
         if (this.lock) return;
         this.lock = true;
-        getWallByPass(this.pass + 1).then(imageInfo => {
-          this.imageInfo = imageInfo;
-          this.pass++;
-          this.$router.replace({query: {pass: this.pass}});
+        this.dayBefore++;
+        this.getImage().then(() => {
+          this.$router.replace({query: {before: this.dayBefore}});
         });
       }
     }

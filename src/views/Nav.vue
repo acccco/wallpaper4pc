@@ -4,7 +4,7 @@
       <i class="app-nav-icon el-icon-menu"></i>
     </div>
     <ul class="app-nav-container">
-      <router-link to="today" tag="li" class="x-flex">
+      <router-link to="onepicture" tag="li" class="x-flex">
         <i class="el-icon-picture"></i>
       </router-link>
       <router-link to="list" tag="li" class="x-flex">

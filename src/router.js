@@ -16,7 +16,7 @@ export default new Router({
       component: OnePicture
     },
     {
-      path: '/onePicture',
+      path: '/onepicture',
       redirect: '/'
     },
     {
@@ -28,7 +28,6 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: About
-      // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     }
   ]
 });

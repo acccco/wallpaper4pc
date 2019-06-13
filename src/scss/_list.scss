@@ -1,0 +1,37 @@
+.pic-list {
+  @include size(100%);
+  position: relative;
+
+  .matrix-info {
+    width: 300px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    opacity: .3;
+    transition: .4s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    .el-input {
+      width: 120px;
+    }
+  }
+
+  .vertical-slider {
+    height: 100%;
+    padding: 30px 0;
+    position: absolute !important;
+    top: 0;
+    left: 0;
+  }
+
+  .horizontal-slider {
+    width: 100%;
+    padding: 0 30px;
+    position: absolute !important;
+    bottom: 0;
+    left: 0;
+  }
+}
