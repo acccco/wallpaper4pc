@@ -1,29 +1,10 @@
 # wallpaler4web
 
-## Project setup
-```
-yarn install
-```
+保存并，使用 bing 的每日壁纸。
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+该项目为 pc 端展示页面。
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+使用到的相关接口如下
 
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. 获取最新壁纸: https://acohome.cn/api/wallpaper/latest
+2. 分页获取壁纸: https://acohome.cn/api/wallpaper?pageNum=1&pageSize=10
