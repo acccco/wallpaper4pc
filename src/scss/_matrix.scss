@@ -14,13 +14,16 @@
     border-radius: 10px;
     background-size: cover;
     background-clip: content-box;
-    box-shadow: inset 0 0 20px #fff;
     position: relative;
     cursor: pointer;
 
     &:hover {
       .btn {
         opacity: 1;
+      }
+
+      .info {
+        opacity: .8;
       }
     }
 
@@ -30,13 +33,33 @@
       font-size: 20px;
       color: #000;
       position: absolute;
-      @include posi(20px, null, null, 20px);
+      @include posi(10px, 10px);
       opacity: 0;
       transition: .4s;
+      cursor: pointer;
     }
   }
 
   .x-hidden {
     opacity: 0;
+  }
+
+  .info {
+    position: absolute;
+    @include posi(null, 10px, 10px);
+    color: #fff;
+    font-size: 12px;
+    opacity: 0;
+    line-height: 1.2em;
+    transition: .4s;
+    letter-spacing: 1px;
+
+    i {
+      padding-right: 5px;
+    }
+
+    p {
+      padding-bottom: 2px;
+    }
   }
 }

@@ -5,11 +5,10 @@
   .next {
     @include size(100px);
     transform: translateY(-50%);
-    opacity: 0.8;
+    opacity: 0.3;
     border-radius: 16px;
     border-width: 4px;
     position: relative;
-    color: #fff;
     @include button-variant(#211717, darken(#211717, 10));
     transition: 0.4s;
     z-index: 10;
@@ -30,6 +29,10 @@
       border-radius: 4px;
       background: #fff;
       transition: 0.4s;
+    }
+
+    &:hover {
+      opacity: .8;
     }
   }
 

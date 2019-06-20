@@ -1,31 +1,33 @@
 <template>
   <div class="matrix-wrap pic-list">
-    <div class="prev btn" :class="{disabled:pageNum===1}" @click="prev"></div>
-    <div class="next btn" @click="next"></div>
+    <div class="prev btn" :class="{disabled: pageNum===1}" @click="prev"></div>
+    <div class="next btn" :class="{disabled: !hasNext}" @click="next"></div>
     <Matrix :row="row" :col="col" :list="listInfo" ref="matrix" @changeEnd="changeEnd"></Matrix>
     <Slider
       class="vertical-slider"
-      v-model="rowTemp"
       vertical
+      show-stops
+      v-model="rowTemp"
+      :disabled="lock"
       :step="1"
       :min="2"
-      :max="6"
-      show-stops>
+      :max="6">
     </Slider>
     <Slider
       class="horizontal-slider"
+      show-stops
       v-model="colTemp"
+      :disabled="lock"
       :step="1"
       :min="2"
-      :max="10"
-      show-stops>
+      :max="10">
     </Slider>
   </div>
 </template>
 
 <script>
   import {Slider} from 'element-ui';
-  import {debounce} from 'lodash';
+  import debounce from 'lodash/debounce';
   import Matrix from '@/components/ListMatrix';
   import {getWallByPage} from '../service';
 
@@ -36,9 +38,10 @@
       return {
         row: 3,
         rowTemp: 3,
-        col: 3,
-        colTemp: 3,
+        col: 4,
+        colTemp: 4,
         pageNum: 1,
+        hasNext: true,
         listInfo: [],
         lock: false
       };
@@ -62,12 +65,15 @@
     },
     methods: {
       rowOrColChange: debounce(function () {
+        if (this.lock) return;
+        this.lock = true;
         this.$refs.matrix.moveOutImage(() => {
           this.row = this.rowTemp;
           this.col = this.colTemp;
           getWallByPage(this.pageNum, this.row * this.col).then(res => {
-            this.$refs.matrix.moveInImage(res.list.map(item => item.uri));
+            this.$refs.matrix.moveInImage(res.list.map(item => item.uri + '?imageMogr2/thumbnail/640x/quality/50'));
             this.listInfo = res.list;
+            this.hasNext = res.hasNext;
           });
         });
       }, 500),
@@ -78,8 +84,9 @@
       },
       getImageList() {
         return getWallByPage(this.pageNum, this.row * this.col).then(res => {
-          this.$refs.matrix.changeImage(res.list.map(item => item.uri));
+          this.$refs.matrix.changeImage(res.list.map(item => item.uri + '?imageMogr2/thumbnail/640x/quality/50'));
           this.listInfo = res.list;
+          this.hasNext = res.hasNext;
         });
       },
       prev() {

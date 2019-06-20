@@ -1,5 +1,63 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="x-flex about">
+    <div class="about-wrap">
+      <img class="head" src="http://blogcdn.acohome.cn/head.jpg" alt="">
+      <p class="info">本站素材所有取自 <a href="https://cn.bing.com/">bing 搜索</a></p>
+      <p class="info">相关接口如下</p>
+      <Table
+        :data="latestData"
+        style="width: 100%">
+        <TableColumn
+          prop="info"
+          label="说明"
+          width="120">
+        </TableColumn>
+        <TableColumn
+          prop="method"
+          label="请求方式"
+          width="80">
+        </TableColumn>
+        <TableColumn
+          prop="uri"
+          label="请求地址"
+          width="340">
+        </TableColumn>
+        <TableColumn
+          prop="param"
+          label="请求参数"
+          width="180">
+        </TableColumn>
+        <TableColumn
+          prop="demo"
+          label="示例"
+          width="380">
+        </TableColumn>
+      </Table>
+    </div>
   </div>
 </template>
+
+<script>
+  import {Table, TableColumn} from 'element-ui';
+
+  export default {
+    components: {Table, TableColumn},
+    data() {
+      return {
+        latestData: [{
+          info: '获取最新图片',
+          method: 'get',
+          uri: 'https://acohome.cn/api/wallpaper/latest',
+          param: '-',
+          demo: 'https://acohome.cn/api/wallpaper/latest'
+        }, {
+          info: '分页获取图片',
+          method: 'get',
+          uri: 'https://acohome.cn/api/wallpaper',
+          param: 'pageNum & pageSize',
+          demo: 'https://acohome.cn/api/wallpaper?pageNum=1&pageSize=10'
+        }]
+      };
+    }
+  };
+</script>

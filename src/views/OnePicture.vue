@@ -1,8 +1,12 @@
 <template>
-  <div class="matrix-wrap">
+  <div class="matrix-wrap one-picture">
     <div class="prev btn" :class="{disabled:dayBefore===0}" @click="prev"></div>
     <div class="next btn" @click="next"></div>
     <Matrix ref="matrix" @changeEnd="changeEnd"></Matrix>
+    <div class="info">
+      <p>{{imageInfo.describe}}</p>
+      <p><i class="el-icon-date"></i>{{imageInfo.date}}</p>
+    </div>
   </div>
 </template>
 

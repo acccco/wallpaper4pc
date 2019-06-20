@@ -12,12 +12,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'onePicture',
-      component: OnePicture
-    },
-    {
-      path: '/onepicture',
-      redirect: '/'
+      name: 'index',
+      component: OnePicture,
     },
     {
       path: '/list',
@@ -28,6 +24,10 @@ export default new Router({
       path: '/about',
       name: 'about',
       component: About
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
   ]
 });

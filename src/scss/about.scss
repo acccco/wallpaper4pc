@@ -1,0 +1,27 @@
+.about {
+  @include size(100%);
+
+  .head {
+    @include circle(200px);
+  }
+
+  .about-wrap {
+    text-align: center;
+  }
+
+  .info {
+    color: #fff;
+    padding: 20px 0;
+
+    a {
+      color: #fff;
+    }
+  }
+
+  .code {
+    width: 800px;
+    background: #fff;
+    align-items: flex-start;
+
+  }
+}

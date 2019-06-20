@@ -5,7 +5,7 @@ $item-distance: 70px;
 #app-nav {
   position: absolute;
   @include size(2 * $nav-radius);
-  @include posi(10px, null, null, 20px);
+  @include posi(10px, null, null, 50px);
 
   .app-nav-icon-wrap {
     @include circle(2 * $nav-radius);
