@@ -47,11 +47,13 @@
     name: 'list',
     components: {Matrix, Slider, Dialog},
     data() {
+      let row = parseInt(localStorage.getItem('__wallpaper-list-row'));
+      let col = parseInt(localStorage.getItem('__wallpaper-list-col'));
       return {
-        row: 3,
-        rowTemp: 3,
-        col: 4,
-        colTemp: 4,
+        row: Number.isNaN(row) ? 3 : row,
+        rowTemp: Number.isNaN(row) ? 3 : row,
+        col: Number.isNaN(col) ? 3 : col,
+        colTemp: Number.isNaN(col) ? 3 : col,
         pageNum: 1,
         hasNext: true,
         listInfo: [],
@@ -97,6 +99,8 @@
         this.$refs.matrix.moveOutImage(() => {
           this.row = this.rowTemp;
           this.col = this.colTemp;
+          localStorage.setItem('__wallpaper-list-row', this.rowTemp);
+          localStorage.setItem('__wallpaper-list-col', this.colTemp);
           getWallByPage(this.pageNum, this.row * this.col).then(res => {
             this.$refs.matrix.moveInImage(res.list.map(item => `${item.uri}?imageMogr2/thumbnail/${this.col <= 4 ? 640 : 480}x/quality/50`));
             this.listInfo = res.list;
@@ -139,7 +143,3 @@
     }
   };
 </script>
-
-<style scoped>
-
-</style>
