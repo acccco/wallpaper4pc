@@ -5,12 +5,14 @@
 <script>
   import {makeMatrixChange, mode} from 'matrixchange';
   import {preLoadImg, getRandom, animateIn, animateOut} from '../util';
-  
+
   export default {
     name: 'matrix',
-    props: ['image'],
     mounted() {
-      this.change = makeMatrixChange(this.$el);
+      this.change = makeMatrixChange(this.$el, {
+        row: 5,
+        col: 6
+      });
       this.change.matrixChange.$on('changeStart', () => {
         this.$emit('changeStart');
       });

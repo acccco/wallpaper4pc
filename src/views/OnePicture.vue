@@ -3,7 +3,7 @@
     <div class="prev btn" :class="{disabled:dayBefore===0}" @click="prev"></div>
     <div class="next btn" @click="next"></div>
     <Matrix ref="matrix" @changeEnd="changeEnd"></Matrix>
-    <div class="info">
+    <div v-if="!lock" class="info">
       <p>{{imageInfo.describe}}</p>
       <p><i class="el-icon-date"></i>{{imageInfo.date}}</p>
     </div>
@@ -22,6 +22,7 @@
     data() {
       return {
         dayBefore: 0,
+        lock: false,
         imageInfo: {
           date: '',
           describe: '',

@@ -16,27 +16,17 @@
     background-clip: content-box;
     position: relative;
     cursor: pointer;
+    user-select: none;
+    background-position: center;
 
     &:hover {
-      .btn {
+      .down-btn {
         opacity: 1;
       }
 
-      .info {
+      .pic-info {
         opacity: .8;
       }
-    }
-
-    .btn {
-      @include size(50px, auto);
-      @include button-variant(rgba(255, 255, 255, .8));
-      font-size: 20px;
-      color: #000;
-      position: absolute;
-      @include posi(10px, 10px);
-      opacity: 0;
-      transition: .4s;
-      cursor: pointer;
     }
   }
 
@@ -44,22 +34,13 @@
     opacity: 0;
   }
 
-  .info {
-    position: absolute;
-    @include posi(null, 10px, 10px);
-    color: #fff;
-    font-size: 12px;
+  .down-btn {
     opacity: 0;
-    line-height: 1.2em;
     transition: .4s;
-    letter-spacing: 1px;
+  }
 
-    i {
-      padding-right: 5px;
-    }
-
-    p {
-      padding-bottom: 2px;
-    }
+  .pic-info {
+    opacity: 0;
+    transition: .4s;
   }
 }

@@ -2,7 +2,7 @@
   <div class="matrix-wrap pic-list">
     <div class="prev btn" :class="{disabled: pageNum===1}" @click="prev"></div>
     <div class="next btn" :class="{disabled: !hasNext}" @click="next"></div>
-    <Matrix :row="row" :col="col" :list="listInfo" ref="matrix" @changeEnd="changeEnd"></Matrix>
+    <Matrix :row="row" :col="col" :list="listInfo" ref="matrix" @changeEnd="changeEnd" @showImage="showImage"></Matrix>
     <Slider
       class="vertical-slider"
       vertical
@@ -22,18 +22,30 @@
       :min="2"
       :max="10">
     </Slider>
+    <Dialog width="80%" class="x-flex" top="0" :visible.sync="imagePreview">
+      <div class="img-wrap" :style="imageStyle">
+        <a v-if="imagePreviewItem.filename" :href="baseURL + '/api/wallpaper/download/' + imagePreviewItem.filename"
+           class="btn down-btn">
+          <i class="el-icon-download"></i>
+        </a>
+        <div v-if="imagePreviewItem.describe" class="pic-info">
+          <p>{{imagePreviewItem.describe}}</p>
+          <p><i class="el-icon-date"></i>{{imagePreviewItem.date}}</p>
+        </div>
+      </div>
+    </Dialog>
   </div>
 </template>
 
 <script>
-  import {Slider} from 'element-ui';
+  import {Slider, Dialog} from 'element-ui';
   import debounce from 'lodash/debounce';
   import Matrix from '@/components/ListMatrix';
-  import {getWallByPage} from '../service';
+  import {getWallByPage, baseURL} from '../service';
 
   export default {
     name: 'list',
-    components: {Matrix, Slider},
+    components: {Matrix, Slider, Dialog},
     data() {
       return {
         row: 3,
@@ -43,8 +55,23 @@
         pageNum: 1,
         hasNext: true,
         listInfo: [],
-        lock: false
+        lock: false,
+        baseURL,
+        imagePreview: false,
+        imagePreviewItem: {
+          describe: '',
+          filename: '',
+          date: '',
+          uri: ''
+        }
       };
+    },
+    computed: {
+      imageStyle() {
+        return {
+          backgroundImage: `url(${this.imagePreviewItem.uri})`
+        };
+      }
     },
     watch: {
       rowTemp(newValue) {
@@ -71,7 +98,7 @@
           this.row = this.rowTemp;
           this.col = this.colTemp;
           getWallByPage(this.pageNum, this.row * this.col).then(res => {
-            this.$refs.matrix.moveInImage(res.list.map(item => item.uri + '?imageMogr2/thumbnail/640x/quality/50'));
+            this.$refs.matrix.moveInImage(res.list.map(item => `${item.uri}?imageMogr2/thumbnail/${this.col <= 4 ? 640 : 480}x/quality/50`));
             this.listInfo = res.list;
             this.hasNext = res.hasNext;
           });
@@ -84,7 +111,7 @@
       },
       getImageList() {
         return getWallByPage(this.pageNum, this.row * this.col).then(res => {
-          this.$refs.matrix.changeImage(res.list.map(item => item.uri + '?imageMogr2/thumbnail/640x/quality/50'));
+          this.$refs.matrix.changeImage(res.list.map(item => `${item.uri}?imageMogr2/thumbnail/${this.col <= 4 ? 640 : 480}x/quality/50`));
           this.listInfo = res.list;
           this.hasNext = res.hasNext;
         });
@@ -104,6 +131,10 @@
         this.getImageList().then(() => {
           this.$router.replace({query: {pageNum: this.pageNum}});
         });
+      },
+      showImage(imageInfo) {
+        this.imagePreview = true;
+        this.imagePreviewItem = imageInfo;
       }
     }
   };

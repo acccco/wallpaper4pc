@@ -22,4 +22,63 @@
       opacity: .8;
     }
   }
+
+  .down-btn {
+    @include size(50px, auto);
+    @include button-variant(rgba(255, 255, 255, .8));
+    font-size: 20px;
+    color: #000;
+    position: absolute;
+    @include posi(10px, 10px);
+    cursor: pointer;
+  }
+
+  .pic-info {
+    position: absolute;
+    @include posi(null, 10px, 10px);
+    color: #fff;
+    font-size: 12px;
+    line-height: 1.2em;
+    letter-spacing: 1px;
+
+    i {
+      padding-right: 5px;
+    }
+
+    p {
+      padding-bottom: 2px;
+    }
+  }
+
+  .img-wrap {
+    width: 100%;
+    padding: 28.125% 0;
+    background-size: cover;
+    border-radius: 2px;
+  }
+
+  .el-dialog {
+    margin: 0;
+    background: rgba(255, 255, 255, .8);
+  }
+
+  .el-dialog__body {
+    padding: 4px;
+  }
+
+  .el-dialog__header {
+    padding: 0;
+  }
+
+  .el-dialog__headerbtn {
+    font-size: 36px;
+    top: 0;
+    right: 5px;
+
+    i {
+      color: #fff !important;
+      filter: drop-shadow(0 0 2px #000);
+
+    }
+  }
 }
