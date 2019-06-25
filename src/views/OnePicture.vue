@@ -44,9 +44,7 @@
         });
       },
       changeEnd() {
-        setTimeout(() => {
-          this.lock = false;
-        }, 2000);
+        this.lock = false;
       },
       prev() {
         if (this.lock) return;

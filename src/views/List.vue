@@ -109,9 +109,7 @@
         });
       }, 500),
       changeEnd() {
-        setTimeout(() => {
-          this.lock = false;
-        }, 2000);
+        this.lock = false;
       },
       getImageList() {
         return getWallByPage(this.pageNum, this.row * this.col).then(res => {

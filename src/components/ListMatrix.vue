@@ -2,7 +2,8 @@
   <div class="list-matrix-container" :style='gridStyle' ref="listMatrix">
     <div data-baseclass="grip-box" class="grip-box" v-for="index in row * col" :key="index"
          @click="showImage(list[index-1])">
-      <a v-if="list[index-1]" :href="baseURL + '/api/wallpaper/download/' + list[index-1].filename" class="down-btn btn">
+      <a v-if="list[index-1]" :href="baseURL + '/api/wallpaper/download/' + list[index-1].filename"
+         class="down-btn btn">
         <i class="el-icon-download"></i>
       </a>
       <div v-if="list[index-1]" class="pic-info">
@@ -46,11 +47,10 @@
     },
     methods: {
       changeImage(image) {
-        this.change.matrixChange.row = this.row;
-        this.change.matrixChange.col = this.col;
+        let animateIndex = getRandom(0, animateIn.length - 1);
         this.change.movePoint(mode[getRandom(0, mode.length - 1)], {
-          classNameIn: 'animated ' + animateIn[getRandom(0, animateIn.length - 1)],
-          classNameOut: 'animated ' + animateOut[getRandom(0, animateOut.length - 1)],
+          classNameIn: 'animated ' + animateIn[animateIndex],
+          classNameOut: 'animated ' + animateOut[animateIndex],
           image
         });
       },

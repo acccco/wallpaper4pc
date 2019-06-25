@@ -4,7 +4,11 @@ export function makeListMatrixChange(parentDom, optionOut) {
 
   let ma = new Matrix(optionOut.row, optionOut.col);
 
-  ma.$on('hitPoint', ({point, option}) => {
+  ma.$on('matrixChangeStart', () => {
+    ma.$emit('changeStart');
+  });
+
+  ma.$on('hitPoint', ({point, option, end}) => {
     let index = point.x * ma.col + point.y;
 
     let classNameIn = option.classNameIn;
@@ -33,6 +37,10 @@ export function makeListMatrixChange(parentDom, optionOut) {
         }, 20);
         dom.dataset.mchange = '2';
         dom.style.backgroundImage = `url(${option.image[index]})`;
+        if (end) {
+          ma.$emit('changeEnd');
+          ma.lock = false;
+        }
       });
     } else if (classNameIn) {
       dom.className = `${baseClass} ${classNameIn}`;
@@ -43,6 +51,10 @@ export function makeListMatrixChange(parentDom, optionOut) {
         dom.className = baseClass;
         dom.dataset.mchange = '';
         dom.removeEventListener('animationend', listen);
+        if (end) {
+          ma.$emit('changeEnd');
+          ma.lock = false;
+        }
       });
     } else {
       dom.className = `${baseClass} ${classNameOut}`;
@@ -52,6 +64,10 @@ export function makeListMatrixChange(parentDom, optionOut) {
         dom.className = baseClass + ' x-hidden';
         dom.dataset.mchange = '';
         dom.removeEventListener('animationend', listen);
+        if (end) {
+          ma.$emit('changeEnd');
+          ma.lock = false;
+        }
       });
     }
   });

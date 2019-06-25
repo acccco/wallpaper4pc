@@ -10,8 +10,8 @@
     name: 'matrix',
     mounted() {
       this.change = makeMatrixChange(this.$el, {
-        row: 5,
-        col: 6
+        row: 7,
+        col: 9
       });
       this.change.matrixChange.$on('changeStart', () => {
         this.$emit('changeStart');
@@ -23,10 +23,11 @@
     methods: {
       showImage(src) {
         preLoadImg(src).then(() => {
+          let animateIndex = getRandom(0, animateIn.length - 1);
           this.change.movePoint(mode[getRandom(0, mode.length - 1)], {
             animate: true,
-            classNameIn: 'animated ' + animateIn[getRandom(0, animateIn.length - 1)],
-            classNameOut: 'animated ' + animateOut[getRandom(0, animateOut.length - 1)],
+            classNameIn: 'animated ' + animateIn[animateIndex],
+            classNameOut: 'animated ' + animateOut[animateIndex],
             image: src
           });
         });
