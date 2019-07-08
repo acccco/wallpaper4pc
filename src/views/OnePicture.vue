@@ -3,7 +3,11 @@
     <div class="prev btn" :class="{disabled:dayBefore===0}" @click="prev"></div>
     <div class="next btn" @click="next"></div>
     <Matrix ref="matrix" @changeEnd="changeEnd"></Matrix>
-    <div v-if="!lock" class="info">
+    <a v-if="!lock" :href="baseURL + '/api/wallpaper/download/' + imageInfo.filename"
+       class="down-btn btn">
+      <i class="el-icon-download"></i>
+    </a>
+    <div v-if="!lock" class="pic-info">
       <p>{{imageInfo.describe}}</p>
       <p><i class="el-icon-date"></i>{{imageInfo.date}}</p>
     </div>
@@ -13,6 +17,7 @@
 <script>
   import Matrix from '@/components/OnePicMatrix';
   import {getWallByBefore} from '../service/';
+  import {baseURL} from '../service';
 
   export default {
     name: 'onePicture',
@@ -21,6 +26,7 @@
     },
     data() {
       return {
+        baseURL,
         dayBefore: 0,
         lock: false,
         imageInfo: {

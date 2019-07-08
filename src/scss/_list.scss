@@ -23,33 +23,6 @@
     }
   }
 
-  .down-btn {
-    @include size(50px, auto);
-    @include button-variant(rgba(255, 255, 255, .8));
-    font-size: 20px;
-    color: #000;
-    position: absolute;
-    @include posi(10px, 10px);
-    cursor: pointer;
-  }
-
-  .pic-info {
-    position: absolute;
-    @include posi(null, 10px, 10px);
-    color: #fff;
-    font-size: 12px;
-    line-height: 1.2em;
-    letter-spacing: 1px;
-
-    i {
-      padding-right: 5px;
-    }
-
-    p {
-      padding-bottom: 2px;
-    }
-  }
-
   .img-wrap {
     width: 100%;
     padding: 28.125% 0;

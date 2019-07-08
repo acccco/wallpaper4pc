@@ -1,18 +1,19 @@
 .one-picture {
-  .info {
-    position: absolute;
+  .pic-info {
     right: 10px;
-    bottom: 10px;
-    z-index: 11;
     color: #fff;
     text-align: right;
     line-height: 1.5em;
     font-size: 16px;
     letter-spacing: 2px;
 
-
     i {
       padding-right: 10px;
     }
+  }
+
+  .down-btn {
+    top: unset;
+    bottom: 10px;
   }
 }
