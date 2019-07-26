@@ -1,10 +1,6 @@
 .pic-list {
   position: relative;
 
-  .is-vertical {
-    z-index: 100;
-  }
-
   .vertical-slider {
     height: 100%;
     padding: 30px 0;
@@ -21,9 +17,10 @@
 
   .vertical-slider, .horizontal-slider {
     opacity: .3;
+    z-index: 100;
 
     &:hover {
-      opacity: .8;
+      opacity: 1;
     }
   }
 
