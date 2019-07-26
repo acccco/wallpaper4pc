@@ -1,6 +1,10 @@
 .pic-list {
   position: relative;
 
+  .is-vertical {
+    z-index: 100;
+  }
+
   .vertical-slider {
     height: 100%;
     padding: 30px 0;
