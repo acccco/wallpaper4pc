@@ -3,19 +3,22 @@ $item-radius: 20px;
 $item-distance: 70px;
 
 #app-nav {
-  position: absolute;
   @include size(2 * $nav-radius);
-  @include posi(10px, null, null, 50px);
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  z-index: 20;
 
   .app-nav-icon-wrap {
     @include circle(2 * $nav-radius);
-    @include posi(0, 0);
+    position: absolute;
+    top: 0;
+    left: 0;
     z-index: 11;
     font-size: 30px;
     color: #f2f4d1;
     background: #f17e7e;
     cursor: pointer;
-    animation: wobble 2s 2s infinite;
 
     &:hover {
       animation: none;
@@ -32,7 +35,8 @@ $item-distance: 70px;
     }
 
     li:nth-child(2) {
-      transform: scale(1) translateX(-$item-distance * .7) translateY($item-distance * .7);
+      transform: scale(1) translateX(-$item-distance * 0.7)
+        translateY($item-distance * 0.7);
     }
 
     li:nth-child(3) {
@@ -43,10 +47,11 @@ $item-distance: 70px;
   .app-nav-container {
     li {
       position: absolute;
-      @include posi($nav-radius - $item-radius, $nav-radius - $item-radius);
+      top: $nav-radius - $item-radius;
+      left: $nav-radius - $item-radius;
       @include circle(2 * $item-radius);
       color: #f2f4d1;
-      transition: transform .5s;
+      transition: transform 0.5s;
       transform: scale(0.5) rotate(180deg);
       cursor: pointer;
       z-index: 10;

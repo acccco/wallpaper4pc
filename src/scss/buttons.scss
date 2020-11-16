@@ -1,7 +1,5 @@
 @charset "utf-8";
 
-@import "./mixin/button";
-
 // Buttons
 //
 // Base styles 初始类，用于button元素
@@ -19,8 +17,7 @@
   white-space: nowrap;
   user-select: none;
   box-sizing: border-box;
-  border-radius: $btn-border-radius-base;
-  @include button-variant($btn-default-bg, $btn-default-border);
+  border-radius: 4px;
 
   &,
   &:active,
@@ -35,7 +32,7 @@
   &:hover,
   &:focus,
   &.focus {
-    color: $btn-default-color;
+    color: #000;
     text-decoration: none;
   }
 

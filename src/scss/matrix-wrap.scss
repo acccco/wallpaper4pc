@@ -32,12 +32,14 @@
     }
 
     &:hover {
-      opacity: .8;
+      opacity: 0.8;
     }
   }
 
   .prev {
-    @include posi(50%, 50px);
+    position: absolute;
+    top: 50%;
+    left: 50px;
 
     &::before,
     &::after {
@@ -66,7 +68,9 @@
   }
 
   .next {
-    @include posi(50%, null, null, 50px);
+    position: absolute;
+    top: 50%;
+    right: 50px;
 
     &::before,
     &::after {

@@ -1,9 +1,11 @@
-@import "core/init";
-@import "./core/buttons";
+@import "function";
+@import "button-variant";
+@import "buttons";
+@import "flex";
 @import "app";
 @import "nav";
 @import "list";
-@import "onePicture";
-@import "matrixWrap";
+@import "one-picture";
+@import "matrix-wrap";
 @import "matrix";
 @import "about";
