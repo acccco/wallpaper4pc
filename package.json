@@ -7,7 +7,7 @@
     "build": "vue-cli-service build && cd ./dist && zip -rD dist.zip ./*"
   },
   "dependencies": {
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "element-ui": "^2.14.1",
     "matrixchange": "^1.5.1",
     "vue": "^2.6.12",
